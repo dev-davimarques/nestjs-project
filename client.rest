@@ -1,6 +1,5 @@
 @baseUrl = http://localhost:3000
 
-
 ### AppControllerGetHello
 # @name AppControllerGetHello
 GET {{baseUrl}}/home/hello
@@ -23,3 +22,14 @@ GET {{baseUrl}}/conceitos-automatico
 ### TaskController listTask
 # @name ListarTarefas
 GET {{baseUrl}}/task/listTask
+
+### ===================================
+### Seção 4 - RECADOS
+
+### Retorna todas as rotas
+# @name RecadosFindAll
+GET {{baseUrl}}/recados
+
+### Retorna apenas uma rota
+# @name RecadosFindOne
+GET {{baseUrl}}/recados/1
