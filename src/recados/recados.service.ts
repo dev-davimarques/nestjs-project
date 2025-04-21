@@ -6,7 +6,7 @@ export class RecadosService {
     return 'Retorna todos os recados';
   }
 
-  findOneService(id: string) {
+  findByIdService(id: string) {
     return `Retorna o recado de ID: ${id}`;
   }
 }

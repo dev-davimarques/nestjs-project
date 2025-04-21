@@ -33,3 +33,24 @@ GET {{baseUrl}}/recados
 ### Retorna apenas uma rota
 # @name RecadosFindOne
 GET {{baseUrl}}/recados/1
+
+### Cria um novo recado
+POST {{baseUrl}}/recados
+Content-Type: application/json
+
+{
+    "recado": "Este é o que estou enviando.",
+    "nova chave": "Outro valor"
+}
+
+### Atualiza meu recado
+PATCH  {{baseUrl}}/recados/1
+Content-Type: application/json
+
+{
+    "recado": "Este é o que estou enviando.",
+    "atulizar": true
+}
+
+### Deleta um recado
+DELETE  {{baseUrl}}/recados/1
