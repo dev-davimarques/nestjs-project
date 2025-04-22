@@ -8,6 +8,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { RecadosService } from './recados.service';
 
@@ -17,8 +18,10 @@ export class RecadosController {
 
   @HttpCode(HttpStatus.OK)
   @Get()
-  findAll() {
-    return this.recadosService.findAllService();
+  findAll(@Query() pagination: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const { limit = 10, offset = 0 } = pagination;
+    return `Retorna todos os recados Limit=${limit},  Offset=${offset}.`;
   }
 
   @Get(':id')
