@@ -58,5 +58,4 @@ DELETE  {{baseUrl}}/recados/1
 ### Rota com parâmetros
 # @name finAllParameters
 GET {{baseUrl}}/recados/
-?limit=5
-?offset=5
+?limit=5&offset=5
