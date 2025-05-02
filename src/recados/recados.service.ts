@@ -1,5 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Recado } from './entities/recado.entity';
+import { CreateRecadoDto } from './dto/create-recado.dto';
+import { UpdateRecadoDto } from './dto/update-recado.dto';
 
 @Injectable()
 export class RecadosService {
@@ -24,21 +26,23 @@ export class RecadosService {
     return this.recados;
   }
 
-  findOneService(id: string) {
-    const recado = this.recados.find((item) => item.id === +id);
+  findOneService(id: number) {
+    const recado = this.recados.find((item) => item.id === id);
     if (recado) {
       return recado;
     }
     this.throwNotFoundError();
   }
 
-  createService(body: any) {
+  createService(createRecadoDto: CreateRecadoDto) {
     this.lastId++;
     const id = this.lastId;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const novoRecado = {
       id,
-      ...body,
+      ...createRecadoDto,
+      lido: false,
+      data: new Date(),
     };
     this.recados.push(novoRecado);
 
@@ -46,7 +50,7 @@ export class RecadosService {
     return novoRecado;
   }
 
-  updateService(id: string, body: any) {
+  updateService(id: string, updateRecadoDto: UpdateRecadoDto) {
     const recadoExistenteIndex = this.recados.findIndex(
       (item) => item.id === +id,
     );
@@ -61,14 +65,14 @@ export class RecadosService {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       this.recados[recadoExistenteIndex] = {
         ...recadoExistente,
-        ...body,
+        ...updateRecadoDto,
       };
     }
 
     return this.recados[recadoExistenteIndex];
   }
 
-  removeService(id: string) {
+  removeService(id: number) {
     const recadoExistenteIndex = this.recados.findIndex(
       (item) => item.id === +id,
     );
