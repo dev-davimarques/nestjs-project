@@ -18,33 +18,31 @@ export class RecadosController {
 
   @HttpCode(HttpStatus.OK)
   @Get()
-  findAll(@Query() pagination: any) {
+  findAllController(@Query() pagination: any) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { limit = 10, offset = 0 } = pagination;
-    return `Retorna todos os recados Limit=${limit},  Offset=${offset}.`;
+    // console.log(pagination);
+    return this.recadosService.findAllService();
   }
 
   @Get(':id')
-  findById(@Param('id') id: string) {
-    return this.recadosService.findByIdService(id);
+  findOneController(@Param('id') id: string) {
+    return this.recadosService.findOneService(id);
   }
 
   @Post()
-  create(@Body() body: string) {
-    return body;
+  createController(@Body() body: string) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return this.recadosService.createService(body);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() body: any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return {
-      id,
-      ...body,
-    };
+  updateController(@Param('id') id: string, @Body() body: any) {
+    return this.recadosService.updateService(id, body);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return `Essa rota apaga o recado com ID: ${id}`;
+  removeController(@Param('id') id: string) {
+    return this.recadosService.removeService(id);
   }
 }
