@@ -21,11 +21,12 @@ export class RecadosController {
 
   @HttpCode(HttpStatus.OK)
   @Get()
-  findAllController(@Query() pagination: any) {
+  async findAllController(@Query() pagination: any) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { limit = 10, offset = 0 } = pagination;
-    // console.log(pagination);
-    return this.recadosService.findAllService();
+    const recados = await this.recadosService.findAllService();
+
+    return recados;
   }
 
   @Get(':id')
